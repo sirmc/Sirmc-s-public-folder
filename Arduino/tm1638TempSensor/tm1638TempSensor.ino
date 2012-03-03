@@ -28,7 +28,7 @@ int del=1000; // duration between temperature readings
 float temperature;
 int B=3975; 
 float resistance;
-int refreshCount = 0;
+int refreshCount = 1000;
 
 // define a module on data pin 8, clock pin 9 and strobe pin 7
 TM1638 module(8, 9, 7);
@@ -52,7 +52,10 @@ void loop() {
   }
   
   // Check temperature on serial and display temperature on tm1638
-  Serial.println(getTemperature());
+  if (refreshCount >= del)
+  {
+    Serial.println(getTemperature()/10.0);
+  }
   module.setDisplayToDecNumber(getTemperature(), 2, false);
   
 
