@@ -1,6 +1,5 @@
-import re
-def product(a,b):
-    return [x+y for x in a for y in b]
+import re, time
+product = lambda a,b: [x+y for x in a for y in b]
 digits = '123456789'
 columns = digits
 rows = 'ABCDEFGHI'
@@ -21,6 +20,7 @@ def grid_to_dict(grid):
     assert len(chars) == 81
     initial_values = dict(zip(squares, chars))
     grid_dict = dict((square, digits) for square in squares)
+    # For every value in grid, set corrsponding square to that number, if error return error (false)
     for square, digit in initial_values.items():
         if digit in digits and not set_square(grid_dict, square, digit):
             return False
@@ -28,6 +28,7 @@ def grid_to_dict(grid):
 def set_square(grid_dict, square, value):
     #Works by eliminating all but value
     not_value = grid_dict[square].replace(value, '')
+    # If all del_from_square are true return result
     if all(del_from_square(grid_dict, square, val2) for val2 in not_value):
         return grid_dict
     else:
@@ -95,6 +96,7 @@ def check(solution):
         assert ''.join(sorted(unit_numbers)) == digits, "Sudoku not solved"
 
 problem_numbers = []
+counter = time.clock()
 for grid in from_file('sudoku.txt'):
     solution = solve(grid)
     check(solution) # Error checking
@@ -105,6 +107,8 @@ for grid in from_file('sudoku.txt'):
     print "\n"
     problem_numbers.append(100*int(solution[0])+10*int(solution[1])+int(solution[2]))
 
+total_time = time.clock()-counter
+print "Total time {0}".format(total_time)
 print problem_numbers
 print 'Sum of all numbers for problem:'
 print sum(problem_numbers)
