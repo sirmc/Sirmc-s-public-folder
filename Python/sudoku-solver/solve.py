@@ -3,6 +3,8 @@ product = lambda a,b: [x+y for x in a for y in b]
 digits = '123456789'
 columns = digits
 rows = 'ABCDEFGHI'
+# This script uses strings instead of dicts because python's built-in
+# string manipulation (e.g. string.replace) is faster than the corresponding list function (list.remove)
 
 squares = product(rows, columns)
 # Set of Related units
