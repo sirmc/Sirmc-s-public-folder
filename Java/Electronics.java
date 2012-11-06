@@ -27,6 +27,7 @@ public class Electronics {
 		out.printf("Input price of third article: ");
 		article3 = in.nextDouble();
 		
+		
 		if (article1 > article2 && article1 > article3){
 			// article1 most expensive
 			totalDiscount = DISCOUNT_RATE*article1;
@@ -39,7 +40,15 @@ public class Electronics {
 			// article3 most expensive
 			totalDiscount = DISCOUNT_RATE*article3;
 			
-		} 
+		} else if (article1 == article2 || article1 == article3){
+			// Price of article1 is equal to 2 or 3, and larger than
+			// the one not equal to it
+			totalDiscount = DISCOUNT_RATE*article1;
+		} else if (article3 == article2 || article3 == article1){
+			// Price of article3 is equal to 2 or 3, and larger than
+			// the one not equal to it
+			totalDiscount = DISCOUNT_RATE*article3;
+		}
 		
 		totalPrice = article1 + article2+ article3 - totalDiscount;
 		

@@ -20,8 +20,8 @@ public class SecondSmallest {
 	}
 	
 	void processInput(int inputInt) {
-		if (inputInt > 0){
-			// Number has to be positive
+		if (inputInt < 0){
+			// Number has to be positive, skip
 		}
 		else if (inputInt < smallest) {
 			// If input is the smallest int yet, 
@@ -34,6 +34,8 @@ public class SecondSmallest {
 			secondSmallest = inputInt;
 		}
 	}
+	 
+	
 	
 	void start() {
 		Scanner in = new Scanner(System.in);
@@ -50,6 +52,7 @@ public class SecondSmallest {
 			secondSmallest = inputBuffer;
 		}
 		
+		// Continue until termination (Enter + CTRL-D)
 		while (in.hasNext()) {
 			processInput(in.nextInt());
 		}
